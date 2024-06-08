@@ -1,0 +1,253 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block breadcrumbs %}{% endblock breadcrumbs %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Composition d'une Nouvelle Equipe de Projet</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <style>
+        #keywordsInput {
+            height: 50px; /* Ajuster la hauteur selon vos besoins */
+        }
+        .keyword-badge {
+            background-color: #007bff; /* Couleur bleue pour les badges */
+            color: #fff; /* Texte en blanc pour une meilleure visibilité */
+            padding: 5px 10px; /* Ajuster le rembourrage pour agrandir les badges */
+            margin-right: 5px; /* Ajouter un espacement entre les badges */
+            margin-top: 10px; /* Ajouter un espacement entre les badges */
+
+            border-radius: 20px; /* Ajuster le rayon de la bordure pour arrondir les badges */
+            cursor: pointer; /* Ajouter un curseur pointer pour indiquer que les badges sont cliquables */
+        }
+    </style>
+
+</head>
+<body>
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Composition d'une Nouvelle Equipe de Projet</h5>
+                        </div>
+                        {% if employee_saved %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                Employé enregistré avec succès.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5>Composition</h5>
+                            <hr>
+                            <form method="POST" action="{% url 'composer_equipe' %}">
+                                {% csrf_token %}
+
+
+
+
+
+                                <div class="form-group">
+                                    <label for="customRange1">Nombre de personnes</label>
+                                    <div class="range-container">
+                                        <input type="range" class="custom-range" id="customRange1" min="1" max="50" value="1" name="nombre_employes">
+                                        <span class="range-value" id="rangeValue">1</span>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="type_application">Type de l'application</label>
+                                            <select class="form-control" id="type_application" name="type_application" required>
+                                                <option value="Desktop">Desktop</option>
+                                                <option value="Application Web">Application Web</option>
+                                                <option value="Mobile">Mobile</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="keywordsInput" class="form-label">Keywords</label>
+                                        <input id="keywordsInput" name="keywords" placeholder="Click to select keywords" class="form-control">
+                                    </div>
+                                </div>
+                                <div id="selectedKeywords"></div><br>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nom">Nom du projet</label>
+                                            <input type="text" class="form-control" id="nom" name="nom" required>
+                                        </div>
+                                    </div>
+                               </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="nom">Description du projet</label>
+                                                <textarea class="form-control" id="description_projet" name="description_projet" rows="4" style="resize: none;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="date_debut_projet">Date de debut du projet</label>
+                                            <input type="date" class="form-control" id="date_debut_projet" name="date_debut_projet" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+          <hr>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1" name="besoin_chef_projet">Besoin de chef de projet</label>
+          </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck2">
+            <label class="custom-control-label" for="customCheck2" name="besoin_consultant">Besoin de consultant</label>
+          </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+                                
+
+                                
+
+                           
+                                <button type="submit" class="btn btn-primary">Composer</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <script>
+
+
+// JavaScript for updating the range value display
+document.getElementById('customRange1').addEventListener('input', function() {
+    document.getElementById('rangeValue').textContent = this.value;
+});
+
+
+
+        $(function() {
+            var availableTags = [
+                "Python",
+                "JavaScript",
+                "HTML",
+                "CSS",
+                "Java",
+                "C++",
+                "PHP",
+                "Ruby",
+                "Swift",
+                "SQL",
+                "Flutter",
+                "C#"
+            ];
+
+            // Function to add selected keyword to input field
+            function addKeyword(keyword) {
+                var currentVal = $("#keywordsInput").val();
+                if (currentVal === "") {
+                    $("#keywordsInput").val(keyword);
+                } else {
+                    $("#keywordsInput").val(currentVal + ", " + keyword);
+                }
+            }
+
+            // Function to remove selected keyword from input field
+            function removeKeyword(keyword) {
+                var currentVal = $("#keywordsInput").val();
+                var newValue = currentVal.replace(keyword, "").replace(", ,", "").trim();
+                $("#keywordsInput").val(newValue);
+            }
+
+            // Display available keywords
+            $.each(availableTags, function(index, value) {
+                var $keyword = $("<span class='badge bg-primary mx-1 clickable keyword-badge'>" + value + "</span>");
+                $keyword.click(function() {
+                    var isSelected = $(this).hasClass("selected");
+                    if (isSelected) {
+                        $(this).removeClass("selected");
+                        removeKeyword(value);
+                    } else {
+                        $(this).addClass("selected");
+                        addKeyword(value);
+                    }
+                });
+                $("#selectedKeywords").append($keyword);
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+{% endblock content %}

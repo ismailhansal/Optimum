@@ -7,7 +7,7 @@
         <div class="b-bg">
           <i class="feather icon-trending-up"></i>
         </div>
-        <span class="b-title">Datta Able</span>
+        <span class="b-title">Optimum</span>
       </a>
       <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
     </div>
@@ -18,21 +18,117 @@
         </li>
         <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item {% if 'index' in segment %}active{% endif %}">
           {% if request.user.is_superuser %}
-          <a href="{% url 'admin:index' %}" class="nav-link ">
+          <a href="{% url 'index' %}" class="nav-link ">
           {% else %}
           <a href="{% url 'index' %}" class="nav-link ">
           {% endif %}
             <span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item {% if 'tables' in segment %}active{% endif %}">
-          <a href="{% url 'tables' %}" class="nav-link "><span class="pcoded-micon"><i
-                class="feather icon-server text-c-green"></i></span><span class="pcoded-mtext">Dynamic Tables</span></a>
+
+
+
+
+        {% if not request.user.is_superuser %}
+
+        <li class="nav-item {% if 'ajouter_certifications' in segment %}active{% endif %}">
+          <a href="{% url 'ajouter_certifications' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-plus text-c-green"></i></span><span class="pcoded-mtext">Ajouter Certifications</span></a>
         </li>
-        <li class="nav-item">
-          <a target="_blank" href="/api/product/" class="nav-link "><span class="pcoded-micon"><i
-                class="feather icon-zap text-c-green"></i></span><span class="pcoded-mtext">Generated API</span></a>
+        <li class="nav-item {% if 'ajouter_projet' in segment %}active{% endif %}">
+          <a href="{% url 'ajouter_projet' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-plus text-c-green"></i></span><span class="pcoded-mtext">Ajouter Projets</span></a>
+
+
         </li>
+
+
+        <li class="nav-item {% if 'liste_certification' in segment %}active{% endif %}">
+          <a href="{% url 'liste_certification' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-file-text text-c-green"></i></span><span class="pcoded-mtext">Gestion des certifications</span></a>
+
+
+        </li>
+
+
+        <li class="nav-item {% if 'liste_projet' in segment %}active{% endif %}">
+          <a href="{% url 'liste_projet' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-file-text text-c-green"></i></span><span class="pcoded-mtext">Gestion des projets</span></a>
+
+
+        </li>
+
+
+
+
+
+        
+        
+        {% endif %}
+
+
+        
+
+      
+
+
+
+
+
+
+
+
+        {% if request.user.is_superuser %}
+<li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds"
+    class="nav-item pcoded-hasmenu ">
+    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span
+            class="pcoded-mtext">Gestion des employés</span></a>
+    <ul class="pcoded-submenu">
+        <li class="nav-item {% if 'ajouter_employe' in segment %}active{% endif %}">
+            <a href="{% url 'ajouter_employe' %}" class="nav-link "><span class="pcoded-micon"><i
+                    class="feather icon-plus text-c-green"></i></span><span class="pcoded-mtext">Ajouter Employé</span></a>
+        </li>
+        <li class="nav-item {% if 'liste_employe' in segment %}active{% endif %}">
+          <a href="/admin/home/employee/" class="nav-link ">
+              <span class="pcoded-micon"><i class="feather icon-list text-c-green"></i></span>
+              <span class="pcoded-mtext">Liste des Employés</span>
+          </a>
+      </li>
+      
+    </ul>
+</li>
+{% endif %}
+
+
+
+{% if request.user.is_superuser %}
+        
+        <li class="nav-item {% if 'composer_equipe' in segment %}active{% endif %}">
+          <a href="{% url 'composer_equipe' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-plus text-c-green"></i></span><span class="pcoded-mtext">Composer Equipe</span></a>
+        </li>
+
+
+
+        <li class="nav-item {% if 'liste_equipes_projet' in segment %}active{% endif %}">
+          <a href="{% url 'liste_equipes_projet' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-file-text text-c-green"></i></span><span class="pcoded-mtext">Liste des Equipes de Projet</span></a>
+        </li>
+        
+        {% endif %}
+
+
+
+
+
+
+
+        
+
+
+
+
+        
 
         {% if not request.user.is_authenticated %}
         <li

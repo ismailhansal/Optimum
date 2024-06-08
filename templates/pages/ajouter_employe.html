@@ -1,0 +1,145 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block breadcrumbs %}{% endblock breadcrumbs %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enregistrement d'un Nouvel Employé</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Enregistrement d'un Nouvel Employé</h5>
+                        </div>
+                        {% if employee_saved %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                Employé enregistré avec succès.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5>Formulaire de Saisie</h5>
+                            <hr>
+                            <form method="POST" action="{% url 'ajouter_employe' %}">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nom">Nom</label>
+                                            <input type="text" class="form-control" id="nom" name="nom" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="prenom">Prénom</label>
+                                            <input type="text" class="form-control" id="prenom" name="prenom" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="date_naissance">Date de naissance</label>
+                                            <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="poste">Poste</label>
+                                            <select class="form-control" id="poste" name="poste" required>
+                                                <option value="">Sélectionnez un poste</option>
+                                                {% for pos in postes %}
+                                                    <option value="{{ pos.id }}">{{ pos.fonction }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="departement">Département</label>
+                                            <select class="form-control" id="departement" name="departement" required>
+                                                <option value="">Sélectionnez un département</option>
+                                                {% for dept in departements %}
+                                                    <option value="{{ dept.id }}">{{ dept.nom }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="adresse">Adresse</label>
+                                            <input type="text" class="form-control" id="adresse" name="adresse" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="telephone">Numéro de téléphone</label>
+                                            <input type="tel" class="form-control" id="telephone" name="telephone" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username">Nom d'utilisateur</label>
+                                            <input type="text" class="form-control" id="username" name="username" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="password">Mot de passe</label>
+                                            <input type="password" class="form-control" id="password" name="password" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="confirm_password">Confirmer le mot de passe</label>
+                                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
+
+{% endblock content %}

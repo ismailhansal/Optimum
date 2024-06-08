@@ -1,0 +1,26 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block breadcrumbs %}{% endblock breadcrumbs %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Confirmation</h1>
+        <div class="alert alert-success">
+            L'équipe de projet a été enregistrée avec succès.
+        </div>
+        <a href="{% url 'composer_equipe' %}" class="btn btn-primary">Composer une nouvelle équipe</a>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
+{% endblock content %}

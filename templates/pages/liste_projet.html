@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block breadcrumbs %}{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Liste des Projets</h5>
+        </div>
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Date de réalisation</th>
+                            <th>Technologies Utilisées</th>
+                            <th>Employé</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for projet in projets %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ projet.nom }}</td>
+                            <td>{{ projet.description }}</td>
+                            <td>{{ projet.date_realisation }}</td>
+                            <td>{{ projet.technologies_utilisees }}</td>
+                            <td>{{ projet.employe.nom }} {{ projet.employe.prenom }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6">Aucun projet trouvé.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

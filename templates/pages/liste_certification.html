@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block breadcrumbs %}{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Liste des Certifications</h5>
+        </div>
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Date d'Obtention</th>
+                            <th>Technologies Utilisées</th>
+                            <th>Employé</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for certification in certifications %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ certification.nom }}</td>
+                            <td>{{ certification.description }}</td>
+                            <td>{{ certification.date_obtention }}</td>
+                            <td>{{ certification.technologies_utilisees }}</td>
+                            <td>{{ certification.employe.nom }} {{ certification.employe.prenom }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6">Aucune certification trouvée.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

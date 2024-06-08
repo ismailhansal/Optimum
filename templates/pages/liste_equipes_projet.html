@@ -1,0 +1,55 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block breadcrumbs %}{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Liste des Équipes de Projet</h5>
+        </div>
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nom du Projet</th>
+                            <th>Description</th>
+                            <th>Date de Début</th>
+                            <th>Employés</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for equipe_projet in equipes_projet %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ equipe_projet.nom }}</td>
+                            <td>{{ equipe_projet.description }}</td>
+                            <td>{{ equipe_projet.date_debut }}</td>
+                            <td>
+                                <ul>
+                                    {% for employe in equipe_projet.employes.all %}
+                                    <li>{{ employe.nom }} {{ employe.prenom }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td>
+                                <a href="{% url 'modifier_equipe_projet' equipe_projet.id %}" class="btn btn-success">Modifier</a>
+                                <a href="{% url 'supprimer_equipe_projet' equipe_projet.id %}" class="btn btn-danger">Supprimer</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6">Aucune équipe de projet trouvée.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
