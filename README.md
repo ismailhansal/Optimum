@@ -33,7 +33,7 @@ Elle aide à composer des équipes adaptées selon les compétences, certificati
 ## Auteur
 
 Ismail Hansal  
-[GitHub](https://github.com/ismailhansal) | [LinkedIn](https://linkedin.com/in/ismailhansal)  
+[GitHub](https://github.com/ismailhansal) | [LinkedIn](https://www.linkedin.com/in/ismail-hansal-a17826267/)  
 
 ---
 
